@@ -10,8 +10,8 @@ public class PlayerController : MonoBehaviour, IPointerDownHandler
     private Vector2 _PointSnake;
     private Vector2 _PointDirection;
     private Vector2 _BasicDirection;
-    private float _VectorDirection;
-    private float _CurrentDirection;
+    public float _VectorDirection;
+    public float _CurrentDirection;
     public float _RotationSpeed;
     public GameObject TruckBody;
 

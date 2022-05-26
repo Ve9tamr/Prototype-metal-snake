@@ -19,7 +19,7 @@ public class PlayerController : MonoBehaviour, IPointerDownHandler
     {
         _PointDirection = Vector2.up;
         _BasicDirection = Vector2.up;
-        _PointSnake = new Vector2(540.0f, 920.0f);
+        _PointSnake.Set(540.0f, 920.0f);
     }
 
     private void Update()

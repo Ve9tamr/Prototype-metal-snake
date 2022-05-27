@@ -10,26 +10,16 @@ public class PlayerController : MonoBehaviour, IPointerDownHandler
     private Vector2 _PointSnake;
     private Vector2 _PointDirection;
     private Vector2 _BasicDirection;
-    public float _VectorDirection;
-    public float _CurrentDirection;
-    public float _RotationSpeed;
     public GameObject TruckBody;
+    private TruckMovement rotupdate;
 
     private void Awake()
     {
         _PointDirection = Vector2.up;
         _BasicDirection = Vector2.up;
         _PointSnake.Set(540.0f, 920.0f);
+        rotupdate = TruckBody.GetComponent<TruckMovement>();
     }
-
-    private void Update()
-    {
-        if (Mathf.Abs(_VectorDirection - _CurrentDirection) > 1)
-        {
-            TruckRotation();
-        }
-    }
-
     public void OnPointerDown(PointerEventData eventData)
     {
         _PointTouched = eventData.position;
@@ -37,30 +27,7 @@ public class PlayerController : MonoBehaviour, IPointerDownHandler
         if (Vector2.Distance(_PointTouched, _PointSnake)>150f)
         {
             _PointDirection = _PointTouched - _PointSnake;
-            _VectorDirection = Vector2.SignedAngle(_BasicDirection, _PointDirection);
+            rotupdate._VectorDirection = Vector2.SignedAngle(_BasicDirection, _PointDirection);
         }
-    }
-
-    private void TruckRotation()
-    {
-        if (_VectorDirection - 180 > _CurrentDirection)
-        {
-            _CurrentDirection += 360;
-        }
-        else if (_VectorDirection + 180 < _CurrentDirection)
-        {
-            _CurrentDirection -= 360;
-        }
-        
-        if (_VectorDirection > _CurrentDirection)
-        {
-            _CurrentDirection += _RotationSpeed * Time.deltaTime;
-        }
-        else
-        {
-            _CurrentDirection -= _RotationSpeed * Time.deltaTime;
-        }
-
-        TruckBody.transform.rotation = Quaternion.Euler(0f, -_CurrentDirection, 0f);
     }
 }

@@ -14,9 +14,13 @@ public class TruckMovement : MonoBehaviour
     public PlayerController rotcontroller;
     private float _DirectionDelta;
     public float _CollisionDelta;
+
+    public GameObject canvaspad;
+    public MenuUIController wincontroller;
     private void Awake()
     {
         rotcontroller = touchpad.GetComponent<PlayerController>();
+        wincontroller = canvaspad.GetComponent<MenuUIController>();
     }
     void Update()
     {
@@ -54,6 +58,13 @@ public class TruckMovement : MonoBehaviour
                 rotcontroller._VectorDirection = _CollisionDelta - transform.eulerAngles.y;
             }
             _DirectionDelta = 0 - transform.eulerAngles.y;
+        }
+    }
+    private void OnTriggerEnter(Collider triggerEnter)
+    {
+        if (triggerEnter.gameObject.name == "FinishLine")
+        {
+            wincontroller.GameWin();
         }
     }
 }

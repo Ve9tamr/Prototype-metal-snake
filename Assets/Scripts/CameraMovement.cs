@@ -24,7 +24,7 @@ public class CameraMovement : MonoBehaviour
         _MoveDistance = Vector3.Distance(_CameraFollowPosition, transform.position);
         if (_MoveDistance > 0.1f)
         {
-            _NewCameraPosition = transform.position + _MoveDirection * _MoveDistance * CameraMoveSpeed * Time.deltaTime;
+            _NewCameraPosition = transform.position +  _MoveDistance * CameraMoveSpeed * Time.deltaTime * _MoveDirection;
             float distanceAfterMoving = Vector3.Distance(_NewCameraPosition, _CameraFollowPosition);
             if (distanceAfterMoving > _MoveDistance)
             {

@@ -2567,7 +2567,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 120
+  field of view: 155
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -2593,7 +2593,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1585075975}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 25, z: 5}
+  m_LocalPosition: {x: 0, y: 10, z: 5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2613,8 +2613,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TruckPosition: {fileID: 1075510843}
-  _difToCamera: {x: 0, y: 25, z: 5}
-  CameraMoveSpeed: 3
+  _difToCamera: {x: 0, y: 10, z: 5}
+  CameraMoveSpeed: 5
 --- !u!1 &1734449666
 GameObject:
   m_ObjectHideFlags: 0

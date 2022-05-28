@@ -23,7 +23,6 @@ public class PlayerController : MonoBehaviour, IPointerDownHandler
     public void OnPointerDown(PointerEventData eventData)
     {
         _PointTouched = eventData.position;
-        Debug.Log(_PointTouched);
 
         if (Vector2.Distance(_PointTouched, _PointSnake)>150f)
         {

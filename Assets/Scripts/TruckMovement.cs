@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TruckMovement : MonoBehaviour
 {
@@ -27,9 +28,17 @@ public class TruckMovement : MonoBehaviour
     public GameObject TailPrefab;
     public Transform connectedtrailers;
 
+    public float maxHP;
+    public float curHP;
+    public GameObject TailtoDestroy;
+    public Text tailsnumber;
+    public Image hpBar;
+
     private void Awake()
     {
         wincontroller = canvaspad.GetComponent<MenuUIController>();
+        curHP = maxHP;
+        TailsChange();
     }
     void Update()
     {
@@ -102,23 +111,25 @@ public class TruckMovement : MonoBehaviour
                 {
                     ThisRotation += _RotationSpeed * Time.deltaTime * (DeltaRotation * 0.04f - 0.2f);
                 }
+                Cargo.transform.rotation = Quaternion.Euler(0f, ThisRotation, 0f);
             }
-            Cargo.transform.rotation = Quaternion.Euler(0f, ThisRotation, 0f);
             PreviousRotation = ThisRotation;
             ConnectorPoint = Cargo.position - (Cargo.forward * 5f);
         }
     }
     private void OnCollisionEnter(Collision collisionEnter)
     {
-        if (collisionEnter.gameObject.name != "Earth")
+        if (collisionEnter.gameObject.CompareTag("Obstacle"))
         {
             _DirectionDelta = 0 - transform.eulerAngles.y;
+            curHP -= _MoveSpeed * (_MoveSpeed * 1.7f - 8.5f);
             _MoveSpeed = 5f;
+            CheckHP();
         }
     }
     private void OnCollisionStay(Collision collisionStay)
     {
-        if (collisionStay.gameObject.name != "Earth")
+        if (collisionStay.gameObject.CompareTag("Obstacle"))
         {
             _CurrentDirection = 0 - transform.eulerAngles.y;
             _MoveSpeed = 5f;
@@ -135,7 +146,7 @@ public class TruckMovement : MonoBehaviour
     }
     private void OnTriggerEnter(Collider triggerEnter)
     {
-        if (triggerEnter.gameObject.name == "FinishLine")
+        if (triggerEnter.gameObject.CompareTag("Finish"))
         {
             wincontroller.GameWin();
         }
@@ -144,6 +155,39 @@ public class TruckMovement : MonoBehaviour
             Destroy(triggerEnter.gameObject);
             var Cargo = Instantiate(TailPrefab, connectedtrailers);
             Tails.Add(Cargo.transform);
+            TailsChange();
         }
+    }
+    private void TailsChange()
+    {
+        if (Tails.Count > 0)
+        {
+            TailtoDestroy = Tails[^1].gameObject;
+            tailsnumber.color = Color.black;
+        }
+        else
+        {
+            tailsnumber.color = Color.red;
+        }
+        tailsnumber.text = Tails.Count.ToString();
+
+    }
+    private void CheckHP()
+    {
+        if (curHP <= 0)
+        {
+            if (Tails.Count == 0)
+            {
+                wincontroller.GameLose();
+            }
+            else
+            {
+                curHP = maxHP;
+                Tails.RemoveAt(Tails.Count - 1);
+                Destroy(TailtoDestroy);
+                TailsChange();
+            }
+        }
+        hpBar.fillAmount = curHP / maxHP;
     }
 }

@@ -7,6 +7,7 @@ public class TruckMovement : MonoBehaviour
 {
     public float _MoveSpeed;
     public float _MaxSpeed;
+    public float _FulSpeed;
     private float _deltaSpeed;
     public float _MinAcseleration;
     public float _PercentAcseleration;
@@ -170,6 +171,14 @@ public class TruckMovement : MonoBehaviour
             tailsnumber.color = Color.red;
         }
         tailsnumber.text = Tails.Count.ToString();
+        if (Tails.Count > 2)
+        {
+            _MaxSpeed = _FulSpeed * Mathf.Pow(0.9f, Tails.Count - 2);
+        }
+        else
+        {
+            _MaxSpeed = _FulSpeed;
+        }
 
     }
     private void CheckHP()

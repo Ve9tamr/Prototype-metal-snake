@@ -25,6 +25,7 @@ public class TruckMovement : MonoBehaviour
     private float ThisRotation;
     public List<Transform> Tails;
     public GameObject TailPrefab;
+    public Transform connectedtrailers;
 
     private void Awake()
     {
@@ -137,6 +138,12 @@ public class TruckMovement : MonoBehaviour
         if (triggerEnter.gameObject.name == "FinishLine")
         {
             wincontroller.GameWin();
+        }
+        if (triggerEnter.gameObject.CompareTag("Food"))
+        {
+            Destroy(triggerEnter.gameObject);
+            var Cargo = Instantiate(TailPrefab, connectedtrailers);
+            Tails.Add(Cargo.transform);
         }
     }
 }

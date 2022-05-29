@@ -59,9 +59,9 @@ public class TruckMovement : MonoBehaviour
             _deltaSpeed = _MaxSpeed - _MoveSpeed;
             _MoveSpeed += (_deltaSpeed * _PercentAcseleration + _MinAcseleration) * Time.deltaTime;
         }
-        else if (_MoveSpeed > _MaxSpeed * 1.05)
+        else if (_MoveSpeed > _MaxSpeed * 1.02)
         {
-            _MoveSpeed = _MaxSpeed;
+            _MoveSpeed -= (_MaxSpeed * _PercentAcseleration + _MinAcseleration) * Time.deltaTime;
         }
         transform.Translate(_MoveSpeed * Time.deltaTime * Vector3.forward);
     }
@@ -120,7 +120,7 @@ public class TruckMovement : MonoBehaviour
     }
     private void OnCollisionEnter(Collision collisionEnter)
     {
-        if (collisionEnter.gameObject.CompareTag("Obstacle"))
+        if (collisionEnter.gameObject.CompareTag("Obstacle") || collisionEnter.gameObject.CompareTag("Enemy"))
         {
             _DirectionDelta = 0 - transform.eulerAngles.y;
             curHP -= _MoveSpeed * (_MoveSpeed * 1.7f - 8.5f);
@@ -130,7 +130,7 @@ public class TruckMovement : MonoBehaviour
     }
     private void OnCollisionStay(Collision collisionStay)
     {
-        if (collisionStay.gameObject.CompareTag("Obstacle"))
+        if (collisionStay.gameObject.CompareTag("Obstacle") || collisionStay.gameObject.CompareTag("Enemy"))
         {
             _CurrentDirection = 0 - transform.eulerAngles.y;
             _MoveSpeed = 5f;

@@ -5,31 +5,31 @@ using UnityEngine;
 public class EnemyMovment : MonoBehaviour
 {
     public int _CurState = 2;
-    private float _StateTimer = 0f;
+    [SerializeField] private float _StateTimer = 0f;
     public float _StateDelta;
     public GameObject PlayerTruck;
-    private float PlayerDistanceSq;
-    public float PursuitDistanceSq;
+    private TruckMovement TruckScript;
+    [SerializeField] private float PlayerDistance;
+    public float PursuitDistance;
     public float EvasionDistance;
-    private float EvasionDistanceSq;
-    private Vector3 _pursuitDirection;
-    private float XDelta;
-    private float ZDelta;
+    [SerializeField] private Vector3 _pursuitDirection;
+    [SerializeField] private float XDelta;
+    [SerializeField] private float ZDelta;
 
     public float _MoveSpeed;
     public float _MaxSpeed;
     public float _FulSpeed;
-    private float _deltaSpeed;
+    [SerializeField] private float _deltaSpeed;
     public float _MinAcseleration;
     public float _PercentAcseleration;
 
     public float _VectorDirection;
-    private float _CurrentDirection;
+    [SerializeField] private float _CurrentDirection;
     public float _RotationSpeed;
 
     private void Start()
     {
-        EvasionDistanceSq = EvasionDistance * EvasionDistance;
+        TruckScript = PlayerTruck.GetComponent<TruckMovement>();
     }
     private void Update()
     {
@@ -48,19 +48,21 @@ public class EnemyMovment : MonoBehaviour
     }
     private void ChooseStait()
     {
-        PlayerDistanceSq = Vector3.Magnitude(transform.position - PlayerTruck.transform.position);
-        if (PlayerDistanceSq > PursuitDistanceSq)
+        PlayerDistance = Vector3.Magnitude(transform.position - PlayerTruck.transform.position);
+        if (PlayerDistance > PursuitDistance)
         {
             _CurState = 2;
             Pursuit();
         }
-        else if (PlayerDistanceSq > EvasionDistanceSq)
+        else if (PlayerDistance > EvasionDistance)
         {
             _CurState = 3;
+            NormalMove();
         }
         else
         {
             _CurState = 4;
+            Evasion();
         }
     }
     private void MoveEnemy()
@@ -117,12 +119,30 @@ public class EnemyMovment : MonoBehaviour
             _pursuitDirection = (PlayerTruck.transform.position + 20f * PlayerTruck.transform.forward) - transform.position;
             if (Vector3.Angle(_pursuitDirection, transform.forward) > 5f)
             {
-                _VectorDirection = Vector3.SignedAngle(Vector3.forward, _pursuitDirection, Vector3.up);
+                _VectorDirection = -Vector3.SignedAngle(Vector3.forward, _pursuitDirection, Vector3.up);
             }
             else
             {
                 _VectorDirection = _CurrentDirection;
             }
+        }
+    }
+    private void NormalMove()
+    {
+        _MaxSpeed = TruckScript._MoveSpeed;
+        _VectorDirection = TruckScript._CurrentDirection;
+    }
+    private void Evasion()
+    {
+        _MaxSpeed = _FulSpeed;
+        XDelta = transform.position.x - PlayerTruck.transform.position.x;
+        if (XDelta > 0)
+        {
+            _VectorDirection = -90;
+        }
+        else
+        {
+            _VectorDirection = 90;
         }
     }
 }

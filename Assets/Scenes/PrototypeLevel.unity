@@ -861,6 +861,67 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1528440011218675264, guid: 9a297dc57e88b464f94070684a8ae8ab, type: 3}
   m_PrefabInstance: {fileID: 710297253}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &590258813
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: -3265584334846295604, guid: 358cc809a282e6b4c959ac245d123889, type: 3}
+      propertyPath: PlayerTruck
+      value: 
+      objectReference: {fileID: 1075510843}
+    - target: {fileID: 1082639995268764148, guid: 358cc809a282e6b4c959ac245d123889, type: 3}
+      propertyPath: m_Name
+      value: Sprat
+      objectReference: {fileID: 0}
+    - target: {fileID: 2668102086184766916, guid: 358cc809a282e6b4c959ac245d123889, type: 3}
+      propertyPath: m_RootOrder
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 2668102086184766916, guid: 358cc809a282e6b4c959ac245d123889, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -45.283695
+      objectReference: {fileID: 0}
+    - target: {fileID: 2668102086184766916, guid: 358cc809a282e6b4c959ac245d123889, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2668102086184766916, guid: 358cc809a282e6b4c959ac245d123889, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -44.726147
+      objectReference: {fileID: 0}
+    - target: {fileID: 2668102086184766916, guid: 358cc809a282e6b4c959ac245d123889, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2668102086184766916, guid: 358cc809a282e6b4c959ac245d123889, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2668102086184766916, guid: 358cc809a282e6b4c959ac245d123889, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2668102086184766916, guid: 358cc809a282e6b4c959ac245d123889, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2668102086184766916, guid: 358cc809a282e6b4c959ac245d123889, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2668102086184766916, guid: 358cc809a282e6b4c959ac245d123889, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2668102086184766916, guid: 358cc809a282e6b4c959ac245d123889, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 358cc809a282e6b4c959ac245d123889, type: 3}
 --- !u!1 &675733774
 GameObject:
   m_ObjectHideFlags: 0
@@ -1709,6 +1770,67 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 848858995}
   m_CullTransparentMesh: 1
+--- !u!1001 &868036773
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: -3265584334846295604, guid: 358cc809a282e6b4c959ac245d123889, type: 3}
+      propertyPath: PlayerTruck
+      value: 
+      objectReference: {fileID: 1075510843}
+    - target: {fileID: 1082639995268764148, guid: 358cc809a282e6b4c959ac245d123889, type: 3}
+      propertyPath: m_Name
+      value: Sprat (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2668102086184766916, guid: 358cc809a282e6b4c959ac245d123889, type: 3}
+      propertyPath: m_RootOrder
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2668102086184766916, guid: 358cc809a282e6b4c959ac245d123889, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -45.283695
+      objectReference: {fileID: 0}
+    - target: {fileID: 2668102086184766916, guid: 358cc809a282e6b4c959ac245d123889, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2668102086184766916, guid: 358cc809a282e6b4c959ac245d123889, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 158.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 2668102086184766916, guid: 358cc809a282e6b4c959ac245d123889, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2668102086184766916, guid: 358cc809a282e6b4c959ac245d123889, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2668102086184766916, guid: 358cc809a282e6b4c959ac245d123889, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2668102086184766916, guid: 358cc809a282e6b4c959ac245d123889, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2668102086184766916, guid: 358cc809a282e6b4c959ac245d123889, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2668102086184766916, guid: 358cc809a282e6b4c959ac245d123889, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2668102086184766916, guid: 358cc809a282e6b4c959ac245d123889, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 358cc809a282e6b4c959ac245d123889, type: 3}
 --- !u!1001 &873620925
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2290,6 +2412,7 @@ MonoBehaviour:
   _MinAcseleration: 0.1
   _PercentAcseleration: 0.3
   _VectorDirection: 0
+  _CurrentDirection: 0
   _RotationSpeed: 100
   _CollisionDelta: 20
   canvaspad: {fileID: 369919598}
@@ -3307,7 +3430,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 140
+  field of view: 150
   orthographic: 0
   orthographic size: 5
   m_Depth: -1

@@ -13,7 +13,7 @@ public class TruckMovement : MonoBehaviour
     public float _PercentAcseleration;
 
     public float _VectorDirection;
-    private float _CurrentDirection;
+    public float _CurrentDirection;
     public float _RotationSpeed;
     private float _DirectionDelta;
     public float _CollisionDelta;

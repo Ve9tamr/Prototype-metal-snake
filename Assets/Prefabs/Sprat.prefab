@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2668102086184766916}
   - component: {fileID: -3265584334846295604}
+  - component: {fileID: 7162897510329762912}
   m_Layer: 0
   m_Name: Sprat
   m_TagString: Enemy
@@ -47,7 +48,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _CurState: 2
   _StateTimer: 0
-  _StateDelta: 0.5
+  _StateDelta: 0.3
   PlayerTruck: {fileID: 0}
   PlayerDistance: 0
   PursuitDistance: 40
@@ -55,6 +56,9 @@ MonoBehaviour:
   _pursuitDirection: {x: 0, y: 0, z: 0}
   XDelta: 0
   ZDelta: 0
+  BoxCenter: {x: 0, y: 2, z: 0}
+  BoxSize: {x: 4, y: 1.5, z: 5}
+  ForwardSize: {x: 1.5, y: 1.5, z: 5}
   _MoveSpeed: 5
   _MaxSpeed: 25
   _FulSpeed: 25
@@ -64,6 +68,25 @@ MonoBehaviour:
   _VectorDirection: 0
   _CurrentDirection: 0
   _RotationSpeed: 150
+  _CollisionDelta: 20
+  maxHP: 1000
+  curHP: 0
+--- !u!54 &7162897510329762912
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1082639995268764148}
+  serializedVersion: 2
+  m_Mass: 2000
+  m_Drag: 0.05
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &3622037168431204240
 GameObject:
   m_ObjectHideFlags: 0

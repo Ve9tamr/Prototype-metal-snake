@@ -190,7 +190,7 @@ Transform:
   m_GameObject: {fileID: 33063522}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 50, y: 0, z: 1000}
-  m_LocalScale: {x: 1, y: 1, z: 2100}
+  m_LocalScale: {x: 1, y: 2, z: 2100}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1456617238}
@@ -424,7 +424,7 @@ Transform:
   m_GameObject: {fileID: 312009569}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -50, y: 0, z: 1000}
-  m_LocalScale: {x: 1, y: 1, z: 2100}
+  m_LocalScale: {x: 1, y: 2, z: 2100}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1456617238}
@@ -869,9 +869,21 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: -3265584334846295604, guid: 358cc809a282e6b4c959ac245d123889, type: 3}
+      propertyPath: BoxSize.z
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: -3265584334846295604, guid: 358cc809a282e6b4c959ac245d123889, type: 3}
+      propertyPath: BoxCenter.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -3265584334846295604, guid: 358cc809a282e6b4c959ac245d123889, type: 3}
       propertyPath: PlayerTruck
       value: 
       objectReference: {fileID: 1075510843}
+    - target: {fileID: -3265584334846295604, guid: 358cc809a282e6b4c959ac245d123889, type: 3}
+      propertyPath: ForwardSize.z
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 1082639995268764148, guid: 358cc809a282e6b4c959ac245d123889, type: 3}
       propertyPath: m_Name
       value: Sprat
@@ -1186,7 +1198,7 @@ Transform:
   m_GameObject: {fileID: 697147519}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -50}
-  m_LocalScale: {x: 100, y: 1, z: 1}
+  m_LocalScale: {x: 100, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1456617238}
@@ -1610,7 +1622,7 @@ Transform:
   m_GameObject: {fileID: 818769490}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 2050}
-  m_LocalScale: {x: 100, y: 1, z: 1}
+  m_LocalScale: {x: 100, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1456617238}

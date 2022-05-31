@@ -15,6 +15,9 @@ public class EnemyMovment : MonoBehaviour
     [SerializeField] private Vector3 _pursuitDirection;
     [SerializeField] private float XDelta;
     [SerializeField] private float ZDelta;
+    public Vector3 BoxCenter;
+    public Vector3 BoxSize;
+    public Vector3 ForwardSize;
 
     public float _MoveSpeed;
     public float _MaxSpeed;
@@ -26,10 +29,16 @@ public class EnemyMovment : MonoBehaviour
     public float _VectorDirection;
     [SerializeField] private float _CurrentDirection;
     public float _RotationSpeed;
+    private float _DirectionDelta;
+    public float _CollisionDelta;
+
+    public float maxHP;
+    public float curHP;
 
     private void Start()
     {
         TruckScript = PlayerTruck.GetComponent<TruckMovement>();
+        curHP = maxHP;
     }
     private void Update()
     {
@@ -48,22 +57,31 @@ public class EnemyMovment : MonoBehaviour
     }
     private void ChooseStait()
     {
-        PlayerDistance = Vector3.Magnitude(transform.position - PlayerTruck.transform.position);
-        if (PlayerDistance > PursuitDistance)
+        if (Physics.BoxCast(transform.position + BoxCenter, BoxSize, transform.forward, Quaternion.Euler(transform.forward), 10f))
         {
-            _CurState = 2;
-            Pursuit();
-        }
-        else if (PlayerDistance > EvasionDistance)
-        {
-            _CurState = 3;
-            NormalMove();
+            _CurState = 1;
+            Jink();
         }
         else
         {
-            _CurState = 4;
-            Evasion();
+            PlayerDistance = Vector3.Magnitude(transform.position - PlayerTruck.transform.position);
+            if (PlayerDistance > PursuitDistance)
+            {
+                _CurState = 2;
+                Pursuit();
+            }
+            else if (PlayerDistance > EvasionDistance)
+            {
+                _CurState = 3;
+                NormalMove();
+            }
+            else
+            {
+                _CurState = 4;
+                Evasion();
+            }
         }
+        
     }
     private void MoveEnemy()
     {
@@ -143,6 +161,90 @@ public class EnemyMovment : MonoBehaviour
         else
         {
             _VectorDirection = 90;
+        }
+    }
+    private void Jink()
+    {
+        if (!Physics.BoxCast(transform.position + BoxCenter, ForwardSize, transform.forward, Quaternion.Euler(transform.forward), 10f))
+        {
+            _MaxSpeed = _FulSpeed;
+            _VectorDirection = _CurrentDirection;
+        }
+        else if (!Physics.Raycast(transform.position, transform.forward * 9 + transform.right * 4, 10))
+        {
+            _MaxSpeed = _FulSpeed;
+            _VectorDirection = _CurrentDirection - 45;
+        }
+        else if (!Physics.Raycast(transform.position, transform.forward * 9 + transform.right * -4, 10))
+        {
+            _MaxSpeed = _FulSpeed;
+            _VectorDirection = _CurrentDirection + 45;
+        }
+        else if (!Physics.Raycast(transform.position, transform.forward * 6 + transform.right * -4, 8))
+        {
+            _MaxSpeed = 5f;
+            _VectorDirection = _CurrentDirection + 90;
+        }
+        else if (!Physics.Raycast(transform.position, transform.forward * 6 + transform.right * 4, 8))
+        {
+            _MaxSpeed = 5f;
+            _VectorDirection = _CurrentDirection - 90;
+        }
+        else
+        {
+            _MaxSpeed = 5f;
+            if (_VectorDirection > 0)
+            {
+                _VectorDirection -= 180f;
+            }
+            else
+            {
+                _VectorDirection += 180f;
+            }
+        }
+    }
+    private void OnCollisionEnter(Collision collisionEnter)
+    {
+        if (collisionEnter.gameObject.CompareTag("Obstacle") || collisionEnter.gameObject.CompareTag("Player"))
+        {
+            _DirectionDelta = 0 - transform.eulerAngles.y;
+            if (collisionEnter.gameObject.CompareTag("Obstacle"))
+            {
+                curHP -= _MoveSpeed * (_MoveSpeed + 5f) - 50;
+                _MoveSpeed = 5f;
+            }
+            else
+            {
+                curHP -= _MoveSpeed * (_MoveSpeed * 0.5f - 5f) + 50;
+            }
+            CheckHP();
+        }
+    }
+    private void OnCollisionStay(Collision collisionStay)
+    {
+        if (collisionStay.gameObject.CompareTag("Obstacle") || collisionStay.gameObject.CompareTag("Player"))
+        {
+            _CurrentDirection = 0 - transform.eulerAngles.y;
+            if (collisionStay.gameObject.CompareTag("Obstacle"))
+            {
+                _MoveSpeed = 5f;
+            }
+            if (_DirectionDelta > (0 - transform.eulerAngles.y))
+            {
+                _VectorDirection = 0 - _CollisionDelta - transform.eulerAngles.y;
+            }
+            else if (_DirectionDelta < (0 - transform.eulerAngles.y))
+            {
+                _VectorDirection = _CollisionDelta - transform.eulerAngles.y;
+            }
+            _DirectionDelta = 0 - transform.eulerAngles.y;
+        }
+    }
+    private void CheckHP()
+    {
+        if (curHP <= 0)
+        {
+            Destroy(gameObject);
         }
     }
 }

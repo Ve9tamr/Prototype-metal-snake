@@ -123,8 +123,15 @@ public class TruckMovement : MonoBehaviour
         if (collisionEnter.gameObject.CompareTag("Obstacle") || collisionEnter.gameObject.CompareTag("Enemy"))
         {
             _DirectionDelta = 0 - transform.eulerAngles.y;
-            curHP -= _MoveSpeed * (_MoveSpeed * 1.7f - 8.5f);
-            _MoveSpeed = 5f;
+            if (collisionEnter.gameObject.CompareTag("Obstacle"))
+            {
+                curHP -= _MoveSpeed * (_MoveSpeed + 5f) - 50;
+                _MoveSpeed = 5f;
+            }
+            else
+            {
+                curHP -= _MoveSpeed * (_MoveSpeed * 0.5f - 5f) + 50;
+            }
             CheckHP();
         }
     }
@@ -133,7 +140,10 @@ public class TruckMovement : MonoBehaviour
         if (collisionStay.gameObject.CompareTag("Obstacle") || collisionStay.gameObject.CompareTag("Enemy"))
         {
             _CurrentDirection = 0 - transform.eulerAngles.y;
-            _MoveSpeed = 5f;
+            if (collisionStay.gameObject.CompareTag("Obstacle"))
+            {
+                _MoveSpeed = 5f;
+            }
             if (_DirectionDelta > (0 - transform.eulerAngles.y))
             {
                 _VectorDirection = 0 - _CollisionDelta - transform.eulerAngles.y;

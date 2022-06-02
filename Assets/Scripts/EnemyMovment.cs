@@ -208,16 +208,19 @@ public class EnemyMovment : MonoBehaviour
         if (collisionEnter.gameObject.CompareTag("Obstacle") || collisionEnter.gameObject.CompareTag("Player"))
         {
             _DirectionDelta = 0 - transform.eulerAngles.y;
-            if (collisionEnter.gameObject.CompareTag("Obstacle"))
+            if (PlayerDistance < 70)
             {
-                curHP -= _MoveSpeed * (_MoveSpeed + 5f) - 50;
-                _MoveSpeed = 5f;
+                if (collisionEnter.gameObject.CompareTag("Obstacle"))
+                {
+                    curHP -= _MoveSpeed * (_MoveSpeed + 5f) - 50;
+                    _MoveSpeed = 5f;
+                }
+                else
+                {
+                    curHP -= _MoveSpeed * (_MoveSpeed * 0.5f - 5f) + 50;
+                }
+                CheckHP();
             }
-            else
-            {
-                curHP -= _MoveSpeed * (_MoveSpeed * 0.5f - 5f) + 50;
-            }
-            CheckHP();
         }
     }
     private void OnCollisionStay(Collision collisionStay)

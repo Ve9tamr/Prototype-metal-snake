@@ -396,11 +396,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b5af7c31aab1627418db38190efa3109, type: 3}
---- !u!1 &238689888 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1082639995268764148, guid: 358cc809a282e6b4c959ac245d123889, type: 3}
-  m_PrefabInstance: {fileID: 590258813}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &312009569
 GameObject:
   m_ObjectHideFlags: 0
@@ -3778,7 +3773,7 @@ PrefabInstance:
     - target: {fileID: 1961748720730520862, guid: 47e229763ab89524a8e12271843543db, type: 3}
       propertyPath: Aim
       value: 
-      objectReference: {fileID: 238689888}
+      objectReference: {fileID: 0}
     - target: {fileID: 1961748720730520862, guid: 47e229763ab89524a8e12271843543db, type: 3}
       propertyPath: Truck
       value: 
@@ -3786,6 +3781,14 @@ PrefabInstance:
     - target: {fileID: 1961748720730520862, guid: 47e229763ab89524a8e12271843543db, type: 3}
       propertyPath: _RotationSpeed
       value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 1961748720730520862, guid: 47e229763ab89524a8e12271843543db, type: 3}
+      propertyPath: _ShootDistance
+      value: 45
+      objectReference: {fileID: 0}
+    - target: {fileID: 6416288653848163263, guid: 47e229763ab89524a8e12271843543db, type: 3}
+      propertyPath: m_TagString
+      value: PlayerWeapon
       objectReference: {fileID: 0}
     - target: {fileID: 9034655241354966651, guid: 47e229763ab89524a8e12271843543db, type: 3}
       propertyPath: m_Name

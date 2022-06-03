@@ -13,6 +13,12 @@ public class TruckShooting : MonoBehaviour
     public GameObject Truck;
     private TruckMovement BodyRotation;
 
+    public float _ReloadTimer;
+    public float _AimDistance;
+    public float _ShootDistance;
+    public GameObject BulletPosition;
+    public Transform BulletPrefab;
+
     private void Awake()
     {
         BodyRotation = Truck.GetComponent<TruckMovement>();
@@ -32,6 +38,21 @@ public class TruckShooting : MonoBehaviour
         if (Mathf.Abs(_AimRotation - _GunRotation) > 3)
         {
             GunRotation();
+        }
+        if (_ReloadTimer < 0.1f)
+        {
+            _ReloadTimer += Time.deltaTime;
+        }
+        else
+        {
+            if (Aim != null)
+            {
+                _AimDistance = Vector3.Magnitude(_AimDirection);
+                if (_AimDistance < _ShootDistance)
+                {
+                    GunShooting();
+                }
+            }
         }
     }
     private void GunRotation()
@@ -53,5 +74,11 @@ public class TruckShooting : MonoBehaviour
             _GunRotation -= _RotationSpeed * Time.deltaTime;
         }
         transform.rotation = Quaternion.Euler(0f, - BodyRotation._CurrentDirection - _GunRotation, 0f);
+    }
+    public void GunShooting()
+    {
+        Transform bulletTrasform = Instantiate(BulletPrefab, BulletPosition.transform.position, Quaternion.identity);
+        bulletTrasform.GetComponent<Bullet>().Setup(_AimDirection, Aim);
+        _ReloadTimer = 0f;
     }
 }

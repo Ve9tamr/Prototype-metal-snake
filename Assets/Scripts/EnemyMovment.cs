@@ -250,4 +250,9 @@ public class EnemyMovment : MonoBehaviour
             Destroy(gameObject);
         }
     }
+    public void BulletHit()
+    {
+        curHP -= 25f;
+        CheckHP();
+    }
 }

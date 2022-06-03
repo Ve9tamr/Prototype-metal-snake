@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class PlayerController : MonoBehaviour, IPointerDownHandler
+public class TouchController : MonoBehaviour
 {
     private Vector2 _PointTouched;
     private Vector2 _PointSnake;
@@ -20,14 +20,17 @@ public class PlayerController : MonoBehaviour, IPointerDownHandler
         _PointSnake.Set(540.0f, 940.0f);
         rotupdate = TruckBody.GetComponent<TruckMovement>();
     }
-    public void OnPointerDown(PointerEventData eventData)
+    void Update()
     {
-        _PointTouched = eventData.position;
-
-        if (Vector2.Distance(_PointTouched, _PointSnake)>150f)
+        if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
         {
-            _PointDirection = _PointTouched - _PointSnake;
-            rotupdate._VectorDirection = Vector2.SignedAngle(_BasicDirection, _PointDirection);
+            Touch touch = Input.GetTouch(0);
+            _PointTouched = touch.position;
+            if (Vector2.Distance(_PointTouched, _PointSnake) > 150f && !EventSystem.current.IsPointerOverGameObject(0))
+            {
+                _PointDirection = _PointTouched - _PointSnake;
+                rotupdate._VectorDirection = Vector2.SignedAngle(_BasicDirection, _PointDirection);
+            }
         }
     }
 }

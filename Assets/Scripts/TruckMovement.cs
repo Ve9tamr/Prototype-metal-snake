@@ -209,4 +209,9 @@ public class TruckMovement : MonoBehaviour
         }
         hpBar.fillAmount = curHP / maxHP;
     }
+    public void BulletHit()
+    {
+        curHP -= 5f;
+        CheckHP();
+    }
 }

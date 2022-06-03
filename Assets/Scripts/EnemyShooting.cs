@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TruckShooting : MonoBehaviour
+public class EnemyShooting : MonoBehaviour
 {
     public GameObject Aim;
     public float _AimRotation;
@@ -10,8 +10,8 @@ public class TruckShooting : MonoBehaviour
     public float _RotationSpeed;
     public Vector3 _AimDirection;
 
-    public GameObject Truck;
-    private TruckMovement BodyRotation;
+    public GameObject Sprat;
+    private EnemyMovment BodyRotation;
 
     public float _ReloadTimer;
     public float _AimDistance;
@@ -21,20 +21,14 @@ public class TruckShooting : MonoBehaviour
 
     private void Awake()
     {
-        BodyRotation = Truck.GetComponent<TruckMovement>();
+        BodyRotation = Sprat.GetComponent<EnemyMovment>();
+        Aim = GameObject.FindWithTag("Player");
     }
     private void Update()
     {
-        if (Aim == null)
-        {
-            _AimRotation = 0f;
-        }
-        else
-        {
-            _AimDirection = Aim.transform.position - transform.position;
-            _AimDirection.y = 0f;
-            _AimRotation = - Vector3.SignedAngle(Truck.transform.forward, _AimDirection, Vector3.up);
-        }
+        _AimDirection = Aim.transform.position - transform.position;
+        _AimDirection.y = 0f;
+        _AimRotation = -Vector3.SignedAngle(Sprat.transform.forward, _AimDirection, Vector3.up);
         if (Mathf.Abs(_AimRotation - _GunRotation) > 3)
         {
             GunRotation();
@@ -45,13 +39,10 @@ public class TruckShooting : MonoBehaviour
         }
         else
         {
-            if (Aim != null)
+            _AimDistance = Vector3.Magnitude(_AimDirection);
+            if (_AimDistance < _ShootDistance)
             {
-                _AimDistance = Vector3.Magnitude(_AimDirection);
-                if (_AimDistance < _ShootDistance)
-                {
-                    GunShooting();
-                }
+                GunShooting();
             }
         }
     }
@@ -73,12 +64,12 @@ public class TruckShooting : MonoBehaviour
         {
             _GunRotation -= _RotationSpeed * Time.deltaTime;
         }
-        transform.rotation = Quaternion.Euler(0f, - BodyRotation._CurrentDirection - _GunRotation, 0f);
+        transform.rotation = Quaternion.Euler(0f, -BodyRotation._CurrentDirection - _GunRotation, 0f);
     }
     public void GunShooting()
     {
         Transform bulletTrasform = Instantiate(BulletPrefab, BulletPosition.transform.position, Quaternion.identity);
-        bulletTrasform.GetComponent<Bullet>().Setup(_AimDirection, Aim, false);
+        bulletTrasform.GetComponent<Bullet>().Setup(_AimDirection, Aim, true);
         _ReloadTimer = 0f;
     }
 }

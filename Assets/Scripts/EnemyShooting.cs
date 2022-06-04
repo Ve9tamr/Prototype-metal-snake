@@ -18,11 +18,15 @@ public class EnemyShooting : MonoBehaviour
     public float _ShootDistance;
     public GameObject BulletPosition;
     public Transform BulletPrefab;
+    public GameObject forbullets;
+    public Transform bullets;
 
     private void Awake()
     {
         BodyRotation = Sprat.GetComponent<EnemyMovment>();
         Aim = GameObject.FindWithTag("Player");
+        forbullets = GameObject.Find("Bullets");
+        bullets = forbullets.GetComponent<Transform>();
     }
     private void Update()
     {
@@ -68,7 +72,7 @@ public class EnemyShooting : MonoBehaviour
     }
     public void GunShooting()
     {
-        Transform bulletTrasform = Instantiate(BulletPrefab, BulletPosition.transform.position, Quaternion.identity);
+        Transform bulletTrasform = Instantiate(BulletPrefab, BulletPosition.transform.position, Quaternion.identity, bullets);
         bulletTrasform.GetComponent<Bullet>().Setup(_AimDirection, Aim, true);
         _ReloadTimer = 0f;
     }

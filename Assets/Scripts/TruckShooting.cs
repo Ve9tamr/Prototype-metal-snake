@@ -18,6 +18,7 @@ public class TruckShooting : MonoBehaviour
     public float _ShootDistance;
     public GameObject BulletPosition;
     public Transform BulletPrefab;
+    public Transform bullets;
 
     private void Awake()
     {
@@ -77,7 +78,7 @@ public class TruckShooting : MonoBehaviour
     }
     public void GunShooting()
     {
-        Transform bulletTrasform = Instantiate(BulletPrefab, BulletPosition.transform.position, Quaternion.identity);
+        Transform bulletTrasform = Instantiate(BulletPrefab, BulletPosition.transform.position, Quaternion.identity, bullets);
         bulletTrasform.GetComponent<Bullet>().Setup(_AimDirection, Aim, false);
         _ReloadTimer = 0f;
     }

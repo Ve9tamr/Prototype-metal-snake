@@ -171,22 +171,26 @@ public class EnemyMovment : MonoBehaviour
             _MaxSpeed = _FulSpeed;
             _VectorDirection = _CurrentDirection;
         }
-        else if (!Physics.Raycast(transform.position, transform.forward * 9 + transform.right * 4, 10))
+        else if (!Physics.Raycast(transform.position + transform.right, transform.forward * 9 + transform.right * 4, 12) && 
+            !Physics.Raycast(transform.position + transform.forward, transform.forward * 9 + transform.right * 4, 12))
         {
             _MaxSpeed = _FulSpeed;
             _VectorDirection = _CurrentDirection - 45;
         }
-        else if (!Physics.Raycast(transform.position, transform.forward * 9 + transform.right * -4, 10))
+        else if (!Physics.Raycast(transform.position - transform.right, transform.forward * 9 + transform.right * -4, 12) &&
+            !Physics.Raycast(transform.position + transform.forward, transform.forward * 9 + transform.right * -4, 12))
         {
             _MaxSpeed = _FulSpeed;
             _VectorDirection = _CurrentDirection + 45;
         }
-        else if (!Physics.Raycast(transform.position, transform.forward * 6 + transform.right * -4, 8))
+        else if (!Physics.Raycast(transform.position - transform.right, transform.forward * 6 + transform.right * -4, 10) &&
+            !Physics.Raycast(transform.position + transform.forward, transform.forward * 6 + transform.right * -4, 10))
         {
             _MaxSpeed = 5f;
             _VectorDirection = _CurrentDirection + 90;
         }
-        else if (!Physics.Raycast(transform.position, transform.forward * 6 + transform.right * 4, 8))
+        else if (!Physics.Raycast(transform.position + transform.right, transform.forward * 6 + transform.right * 4, 10) &&
+            !Physics.Raycast(transform.position + transform.forward, transform.forward * 6 + transform.right * 4, 10))
         {
             _MaxSpeed = 5f;
             _VectorDirection = _CurrentDirection - 90;

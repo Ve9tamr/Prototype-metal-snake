@@ -35,8 +35,9 @@ public class EnemyMovment : MonoBehaviour
     public float maxHP;
     public float curHP;
 
-    private void Start()
+    private void Awake()
     {
+        PlayerTruck = GameObject.FindWithTag("Player");
         TruckScript = PlayerTruck.GetComponent<TruckMovement>();
         curHP = maxHP;
     }

@@ -163,7 +163,7 @@ MonoBehaviour:
   BoxCenter: {x: 0, y: 2, z: 0}
   BoxSize: {x: 4, y: 1.5, z: 5}
   ForwardSize: {x: 1.5, y: 1.5, z: 5}
-  _MoveSpeed: 5
+  _MoveSpeed: 15
   _MaxSpeed: 25
   _FulSpeed: 25
   _deltaSpeed: 0

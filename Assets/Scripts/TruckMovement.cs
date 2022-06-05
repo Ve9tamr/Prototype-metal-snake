@@ -157,16 +157,26 @@ public class TruckMovement : MonoBehaviour
     }
     private void OnTriggerEnter(Collider triggerEnter)
     {
-        if (triggerEnter.gameObject.CompareTag("Finish"))
-        {
-            wincontroller.GameWin();
-        }
         if (triggerEnter.gameObject.CompareTag("Food"))
         {
             Destroy(triggerEnter.gameObject);
             var Cargo = Instantiate(TailPrefab, connectedtrailers);
             Tails.Add(Cargo.transform);
             TailsChange();
+        }
+        else if (triggerEnter.gameObject.name == "SpawnerLine")
+        {
+            SpawnerMover SMover = triggerEnter.gameObject.GetComponent<SpawnerMover>();
+            SMover.MoveSpawners();
+        }
+        else if (triggerEnter.gameObject.name == "FirstEncounter")
+        {
+            FirstSpawn FSpawn = triggerEnter.gameObject.GetComponent<FirstSpawn>();
+            FSpawn.MFSpawn();
+        }
+        else if (triggerEnter.gameObject.CompareTag("Finish"))
+        {
+            wincontroller.GameWin();
         }
     }
     private void TailsChange()

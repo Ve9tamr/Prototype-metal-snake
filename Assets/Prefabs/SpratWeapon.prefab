@@ -62,7 +62,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: b1b498c2b1443e142936aa47a1f99965, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -159,7 +159,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: b1b498c2b1443e142936aa47a1f99965, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -284,3 +284,5 @@ MonoBehaviour:
   _ShootDistance: 40
   BulletPosition: {fileID: 5989704648505886411}
   BulletPrefab: {fileID: 6651604915001403682, guid: 0f253a803a51b8e49b41c0dae33e558a, type: 3}
+  forbullets: {fileID: 0}
+  bullets: {fileID: 0}

@@ -44,7 +44,7 @@ public class TruckMovement : MonoBehaviour
     void Update()
     {
         MoveTruck();
-        if (Mathf.Abs(_VectorDirection - _CurrentDirection) > 1)
+        if (Mathf.Abs(_VectorDirection - _CurrentDirection) > 3)
         {
             TruckRotation();
         }

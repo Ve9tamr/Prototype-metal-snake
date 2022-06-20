@@ -36,7 +36,7 @@ public class TruckShooting : MonoBehaviour
             _AimDirection.y = 0f;
             _AimRotation = - Vector3.SignedAngle(Truck.transform.forward, _AimDirection, Vector3.up);
         }
-        if (Mathf.Abs(_AimRotation - _GunRotation) > 3)
+        if (Mathf.Abs(_AimRotation - _GunRotation) > 4)
         {
             GunRotation();
         }

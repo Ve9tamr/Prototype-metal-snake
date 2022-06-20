@@ -33,7 +33,7 @@ public class EnemyShooting : MonoBehaviour
         _AimDirection = Aim.transform.position - transform.position;
         _AimDirection.y = 0f;
         _AimRotation = -Vector3.SignedAngle(Sprat.transform.forward, _AimDirection, Vector3.up);
-        if (Mathf.Abs(_AimRotation - _GunRotation) > 3)
+        if (Mathf.Abs(_AimRotation - _GunRotation) > 4)
         {
             GunRotation();
         }

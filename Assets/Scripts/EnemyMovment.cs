@@ -50,7 +50,7 @@ public class EnemyMovment : MonoBehaviour
             ChooseStait();
         }
         MoveEnemy();
-        if (Mathf.Abs(_VectorDirection - _CurrentDirection) > 1)
+        if (Mathf.Abs(_VectorDirection - _CurrentDirection) > 3)
         {
             RotationEnemy();
         }

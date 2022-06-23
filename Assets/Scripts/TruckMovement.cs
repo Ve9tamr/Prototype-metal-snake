@@ -17,6 +17,7 @@ public class TruckMovement : MonoBehaviour
     public float _RotationSpeed;
     private float _DirectionDelta;
     public float _CollisionDelta;
+    private int _CollisionFactor;
 
     public GameObject canvaspad;
     private MenuUIController wincontroller;
@@ -39,6 +40,7 @@ public class TruckMovement : MonoBehaviour
     {
         wincontroller = canvaspad.GetComponent<MenuUIController>();
         curHP = maxHP;
+        _CollisionFactor = 1;
         TailsChange();
     }
     void Update()
@@ -61,7 +63,7 @@ public class TruckMovement : MonoBehaviour
         }
         else if (_MoveSpeed > _MaxSpeed * 1.02)
         {
-            _MoveSpeed -= (_MaxSpeed * _PercentAcseleration + _MinAcseleration) * Time.deltaTime;
+            _MoveSpeed -= (_FulSpeed * _PercentAcseleration + _MinAcseleration) * Time.deltaTime;
         }
         transform.Translate(_MoveSpeed * Time.deltaTime * Vector3.forward);
     }
@@ -77,11 +79,11 @@ public class TruckMovement : MonoBehaviour
         }
         if (_VectorDirection > _CurrentDirection)
         {
-            _CurrentDirection += _RotationSpeed * Time.deltaTime;
+            _CurrentDirection += _RotationSpeed * Time.deltaTime * _CollisionFactor;
         }
         else
         {
-            _CurrentDirection -= _RotationSpeed * Time.deltaTime;
+            _CurrentDirection -= _RotationSpeed * Time.deltaTime * _CollisionFactor;
         }
         transform.rotation = Quaternion.Euler(0f, -_CurrentDirection, 0f);
     }
@@ -122,15 +124,16 @@ public class TruckMovement : MonoBehaviour
     {
         if (collisionEnter.gameObject.CompareTag("Obstacle") || collisionEnter.gameObject.CompareTag("Enemy"))
         {
+            _CollisionFactor = 2;
             _DirectionDelta = 0 - transform.eulerAngles.y;
             if (collisionEnter.gameObject.CompareTag("Obstacle"))
             {
-                curHP -= _MoveSpeed * (_MoveSpeed + 5f) - 50;
+                curHP -= _MoveSpeed * (_MoveSpeed * 0.5f + 5f) - 35;
                 _MoveSpeed = 5f;
             }
             else
             {
-                curHP -= _MoveSpeed * (_MoveSpeed * 0.5f - 5f) + 50;
+                curHP -= _MoveSpeed * (_MoveSpeed * 0.3f + 3f) + 10;
             }
             CheckHP();
         }
@@ -153,6 +156,13 @@ public class TruckMovement : MonoBehaviour
                 _VectorDirection = _CollisionDelta - transform.eulerAngles.y;
             }
             _DirectionDelta = 0 - transform.eulerAngles.y;
+        }
+    }
+    private void OnCollisionExit(Collision collisionExit)
+    {
+        if (collisionExit.gameObject.CompareTag("Obstacle") || collisionExit.gameObject.CompareTag("Enemy"))
+        {
+            _CollisionFactor = 1;
         }
     }
     private void OnTriggerEnter(Collider triggerEnter)

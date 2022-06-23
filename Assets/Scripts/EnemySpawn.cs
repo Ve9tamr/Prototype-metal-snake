@@ -40,9 +40,9 @@ public class EnemySpawn : MonoBehaviour
     }
     private void GenerateWaveTimer()
     {
-        if (GlobalTimer < 180f)
+        if (GlobalTimer < 90f)
         {
-            NextWave = GlobalTimer + Random.Range(15f, 25f);
+            NextWave = GlobalTimer + Random.Range(9f, 18f);
         }
         else
         {
@@ -51,7 +51,7 @@ public class EnemySpawn : MonoBehaviour
     }
     public void SpawnWave()
     {
-        if (GlobalTimer < 180f)
+        if (GlobalTimer < 90f)
         {
             SpawnCounter = 2;
         }

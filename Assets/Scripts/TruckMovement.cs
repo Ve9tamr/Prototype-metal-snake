@@ -14,6 +14,7 @@ public class TruckMovement : MonoBehaviour
 
     public float _VectorDirection;
     public float _CurrentDirection;
+    public float _MaxRotSpeed;
     public float _RotationSpeed;
     private float _DirectionDelta;
     public float _CollisionDelta;
@@ -203,11 +204,13 @@ public class TruckMovement : MonoBehaviour
         tailsnumber.text = Tails.Count.ToString();
         if (Tails.Count > 2)
         {
-            _MaxSpeed = _FulSpeed * Mathf.Pow(0.9f, Tails.Count - 2);
+            _MaxSpeed = _FulSpeed * Mathf.Pow(0.85f, Tails.Count - 2);
+            _RotationSpeed = _MaxRotSpeed * Mathf.Pow(0.85f, Tails.Count - 2);
         }
         else
         {
             _MaxSpeed = _FulSpeed;
+            _RotationSpeed = _MaxRotSpeed;
         }
 
     }

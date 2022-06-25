@@ -278,7 +278,7 @@ public class EnemyMovment : MonoBehaviour
             {
                 TruckScript.TrailerDamaged();
             }
-            if (PlayerDistance < 60)
+            if (PlayerDistance < 50)
             {
                 if (collisionEnter.gameObject.CompareTag("Obstacle"))
                 {

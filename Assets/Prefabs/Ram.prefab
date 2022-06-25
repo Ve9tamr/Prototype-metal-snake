@@ -1050,7 +1050,7 @@ MonoBehaviour:
   _StateDelta: 0.2
   PlayerTruck: {fileID: 0}
   PlayerDistance: 100
-  PursuitDistance: 20
+  PursuitDistance: 25
   EvasionDistance: 6
   _pursuitDirection: {x: 0, y: 0, z: 0}
   XDelta: 0
@@ -1059,8 +1059,8 @@ MonoBehaviour:
   BoxSize: {x: 6, y: 1.5, z: 2}
   ForwardSize: {x: 2.5, y: 1.5, z: 2}
   _MoveSpeed: 15
-  _MaxSpeed: 32
-  _FulSpeed: 32
+  _MaxSpeed: 33
+  _FulSpeed: 33
   _deltaSpeed: 0
   _MinAcseleration: 0.5
   _PercentAcseleration: 1

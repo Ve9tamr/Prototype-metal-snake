@@ -177,7 +177,7 @@ MonoBehaviour:
   _CurrentDirection: 0
   _RotationSpeed: 150
   _CollisionDelta: 20
-  maxHP: 1500
+  maxHP: 1400
   curHP: 0
   EnemyMv: {fileID: 4340784085021734371}
   CanvasCounter: {fileID: 0}

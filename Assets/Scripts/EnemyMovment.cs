@@ -212,7 +212,7 @@ public class EnemyMovment : MonoBehaviour
         RamMode = true;
         RamTimer = 1f;
         _MaxSpeed = _FulSpeed;
-        _pursuitDirection = (PlayerTruck.transform.position + 10f * PlayerTruck.transform.forward) - transform.position;
+        _pursuitDirection = (PlayerTruck.transform.position + 5f * PlayerTruck.transform.forward) - transform.position;
         if (Vector3.Angle(_pursuitDirection, transform.forward) > 3f)
         {
             _VectorDirection = -Vector3.SignedAngle(Vector3.forward, _pursuitDirection, Vector3.up);

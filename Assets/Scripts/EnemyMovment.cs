@@ -62,7 +62,7 @@ public class EnemyMovment : MonoBehaviour
             RotationEnemy();
         }
         MoveEnemy();
-        EnemyMv.volume = (_MoveSpeed + 15) / 200;
+        EnemyMv.volume = (_MoveSpeed + 50) / 400;
     }
     private void ChooseStait()
     {
@@ -72,6 +72,7 @@ public class EnemyMovment : MonoBehaviour
             float makez = transform.position.z;
             transform.position = new Vector3(makex, 0, makez);
         }
+        PlayerDistance = Vector3.Magnitude(transform.position - PlayerTruck.transform.position);
         if (Physics.BoxCast(transform.position + BoxCenter, BoxSize, transform.forward, Quaternion.Euler(transform.forward), 14f))
         {
             _CurState = 1;
@@ -79,7 +80,6 @@ public class EnemyMovment : MonoBehaviour
         }
         else
         {
-            PlayerDistance = Vector3.Magnitude(transform.position - PlayerTruck.transform.position);
             if (PlayerDistance > PursuitDistance)
             {
                 _CurState = 2;
@@ -228,7 +228,7 @@ public class EnemyMovment : MonoBehaviour
         {
             _DirectionDelta = 0 - transform.eulerAngles.y;
             _CollisionFactor = 2;
-            if (PlayerDistance < 70)
+            if (PlayerDistance < 60)
             {
                 if (collisionEnter.gameObject.CompareTag("Obstacle"))
                 {

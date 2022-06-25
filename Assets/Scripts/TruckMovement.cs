@@ -56,7 +56,7 @@ public class TruckMovement : MonoBehaviour
         ConnectorPoint = transform.position - (transform.forward * 3f);
         PreviousRotation = transform.eulerAngles.y;
         MoveTails();
-        TruckMv.volume = (_MoveSpeed + 25) / 200;
+        TruckMv.volume = (_MoveSpeed + 60) / 400;
     }
     private void MoveTruck()
     {

@@ -50,7 +50,7 @@ public class TruckShooting : MonoBehaviour
             if (Aim != null)
             {
                 _AimDistance = Vector3.Magnitude(_AimDirection);
-                if (_AimDistance < _ShootDistance)
+                if (_AimDistance < _ShootDistance && Mathf.Abs(_AimRotation - _GunRotation) < 8)
                 {
                     GunShooting();
                 }

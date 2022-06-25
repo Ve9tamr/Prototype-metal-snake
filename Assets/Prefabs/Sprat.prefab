@@ -156,7 +156,7 @@ MonoBehaviour:
   _StateTimer: 0
   _StateDelta: 0.2
   PlayerTruck: {fileID: 0}
-  PlayerDistance: 0
+  PlayerDistance: 100
   PursuitDistance: 40
   EvasionDistance: 20
   _pursuitDirection: {x: 0, y: 0, z: 0}
@@ -178,6 +178,7 @@ MonoBehaviour:
   maxHP: 1000
   curHP: 0
   EnemyMv: {fileID: 4340784085021734371}
+  CanvasCounter: {fileID: 0}
 --- !u!114 &1868002919392934806
 MonoBehaviour:
   m_ObjectHideFlags: 0

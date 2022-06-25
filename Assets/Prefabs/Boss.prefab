@@ -168,8 +168,8 @@ MonoBehaviour:
   BoxSize: {x: 6, y: 1.5, z: 2}
   ForwardSize: {x: 2, y: 1.5, z: 2}
   _MoveSpeed: 15
-  _MaxSpeed: 28
-  _FulSpeed: 28
+  _MaxSpeed: 32
+  _FulSpeed: 32
   _deltaSpeed: 0
   _MinAcseleration: 0.5
   _PercentAcseleration: 1
@@ -177,7 +177,7 @@ MonoBehaviour:
   _CurrentDirection: 0
   _RotationSpeed: 150
   _CollisionDelta: 20
-  maxHP: 2000
+  maxHP: 1500
   curHP: 0
   EnemyMv: {fileID: 4340784085021734371}
   CanvasCounter: {fileID: 0}
@@ -642,7 +642,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5958752212491049532}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -2}
+  m_LocalPosition: {x: 0, y: 1.25, z: -2}
   m_LocalScale: {x: 3, y: 2.5, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children: []

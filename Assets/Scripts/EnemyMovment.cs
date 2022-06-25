@@ -37,11 +37,15 @@ public class EnemyMovment : MonoBehaviour
     public float curHP;
 
     public AudioSource EnemyMv;
+    public GameObject CanvasCounter;
+    private MenuUIController CanvasScript;
 
     private void Awake()
     {
         PlayerTruck = GameObject.FindWithTag("Player");
         TruckScript = PlayerTruck.GetComponent<TruckMovement>();
+        CanvasCounter = GameObject.FindWithTag("Canvas");
+        CanvasScript = CanvasCounter.GetComponent<MenuUIController>();
         _CollisionFactor = 1;
         curHP = maxHP;
     }
@@ -235,7 +239,7 @@ public class EnemyMovment : MonoBehaviour
                 {
                     curHP -= _MoveSpeed * (_MoveSpeed * 0.3f + 3f) + 10;
                 }
-                CheckHP();
+                CheckHP(0);
             }
         }
     }
@@ -266,16 +270,21 @@ public class EnemyMovment : MonoBehaviour
             _CollisionFactor = 1;
         }
     }
-    private void CheckHP()
+    private void CheckHP(int Sourse)
     {
         if (curHP <= 0)
         {
+            if (Sourse == 1)
+            {
+                ++CanvasScript.EnemiesKilled;
+            }
+            ++CanvasScript.EnemiesDead;
             Destroy(gameObject);
         }
     }
     public void BulletHit()
     {
         curHP -= 25f;
-        CheckHP();
+        CheckHP(1);
     }
 }

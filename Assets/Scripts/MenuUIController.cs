@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class MenuUIController : MonoBehaviour
@@ -14,6 +15,16 @@ public class MenuUIController : MonoBehaviour
     public GameObject WinMenuUI;
     public GameObject LoseMenuUI;
 
+    public Text StatisticsWin;
+    public int TrailersGained;
+    public int TrailersFinished;
+    public int EnemiesDead;
+    public int EnemiesKilled;
+    public int TimeonLevel;
+
+    private EnemySpawn GetTimer;
+    public GameObject SpawnersTimer;
+
     private void Awake()
     {
         PauseMenuUI.SetActive(false);
@@ -24,6 +35,7 @@ public class MenuUIController : MonoBehaviour
         TutorialMenuUI1.SetActive(true);
         Time.timeScale = 0f;
         GameIsPaused = true;
+        GetTimer = SpawnersTimer.GetComponent<EnemySpawn>();
     }
 
     public void Resume()
@@ -61,6 +73,9 @@ public class MenuUIController : MonoBehaviour
         WinMenuUI.SetActive(true);
         Time.timeScale = 0f;
         GameIsPaused = true;
+        TimeonLevel = (int)GetTimer.GlobalTimer;
+        StatisticsWin.text = TrailersGained.ToString() + "\n" + TrailersFinished.ToString() + "\n" + EnemiesDead.ToString() + "\n" +
+            EnemiesKilled.ToString() + "\n" + TimeonLevel.ToString();
     }
 
     public void GameLose()

@@ -8,7 +8,7 @@ public class EnemySpawn : MonoBehaviour
     public GameObject CurrentSpawnerA;
     public GameObject CurrentSpawnerB;
     public Transform CurrentSpawner;
-    private float GlobalTimer;
+    public float GlobalTimer;
     public float NextWave;
     private float SpawnerTimer;
     private int SpawnCounter;

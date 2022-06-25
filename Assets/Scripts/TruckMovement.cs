@@ -176,6 +176,7 @@ public class TruckMovement : MonoBehaviour
             Destroy(triggerEnter.gameObject);
             var Cargo = Instantiate(TailPrefab, connectedtrailers);
             Tails.Add(Cargo.transform);
+            ++wincontroller.TrailersGained;
             TailsChange();
         }
         else if (triggerEnter.gameObject.name == "SpawnerLine")
@@ -205,6 +206,7 @@ public class TruckMovement : MonoBehaviour
             tailsnumber.color = Color.red;
         }
         tailsnumber.text = Tails.Count.ToString();
+        wincontroller.TrailersFinished = Tails.Count;
         if (Tails.Count > 2)
         {
             _MaxSpeed = _FulSpeed * Mathf.Pow(0.85f, Tails.Count - 2);

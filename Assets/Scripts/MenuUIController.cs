@@ -16,6 +16,7 @@ public class MenuUIController : MonoBehaviour
     public GameObject LoseMenuUI;
 
     public Text StatisticsWin;
+    public Text StatisticsLose;
     public int TrailersGained;
     public int TrailersFinished;
     public int EnemiesDead;
@@ -83,6 +84,9 @@ public class MenuUIController : MonoBehaviour
         LoseMenuUI.SetActive(true);
         Time.timeScale = 0f;
         GameIsPaused = true;
+        TimeonLevel = (int)GetTimer.GlobalTimer;
+        StatisticsWin.text = TrailersGained.ToString() + "\n" + EnemiesDead.ToString() + "\n" +
+            EnemiesKilled.ToString() + "\n" + TimeonLevel.ToString();
     }
     public void RestartGame()
     {

@@ -37,6 +37,7 @@ public class TruckMovement : MonoBehaviour
     public Text tailsnumber;
     public Image hpBar;
     public AudioSource TruckMv;
+    public AudioSource CrushIn;
 
     private void Awake()
     {
@@ -128,6 +129,7 @@ public class TruckMovement : MonoBehaviour
     {
         if (collisionEnter.gameObject.CompareTag("Obstacle") || collisionEnter.gameObject.CompareTag("Enemy"))
         {
+            CrushIn.Play();
             _CollisionFactor = 2;
             _DirectionDelta = 0 - transform.eulerAngles.y;
             if (collisionEnter.gameObject.CompareTag("Obstacle"))

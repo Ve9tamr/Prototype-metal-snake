@@ -163,13 +163,13 @@ MonoBehaviour:
   XDelta: 0
   ZDelta: 0
   BoxCenter: {x: 0, y: 2, z: 0}
-  BoxSize: {x: 5, y: 1.5, z: 6}
-  ForwardSize: {x: 1.5, y: 1.5, z: 6}
+  BoxSize: {x: 6, y: 1.5, z: 2}
+  ForwardSize: {x: 2, y: 1.5, z: 2}
   _MoveSpeed: 15
   _MaxSpeed: 30
   _FulSpeed: 30
   _deltaSpeed: 0
-  _MinAcseleration: 0.2
+  _MinAcseleration: 0.5
   _PercentAcseleration: 1
   _VectorDirection: 0
   _CurrentDirection: 0
@@ -230,7 +230,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 500
+  MaxDistance: 200
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0

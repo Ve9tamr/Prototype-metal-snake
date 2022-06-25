@@ -52,7 +52,7 @@ MonoBehaviour:
   _MaxSpeed: 20
   _FulSpeed: 20
   _MinAcseleration: 0.1
-  _PercentAcseleration: 0.3
+  _PercentAcseleration: 0.5
   _VectorDirection: 0
   _CurrentDirection: 0
   _MaxRotSpeed: 0

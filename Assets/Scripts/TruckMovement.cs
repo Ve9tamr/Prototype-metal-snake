@@ -48,18 +48,19 @@ public class TruckMovement : MonoBehaviour
     }
     void Update()
     {
-        MoveTruck();
         if (Mathf.Abs(_VectorDirection - _CurrentDirection) > 3)
         {
             TruckRotation();
         }
+        MoveTruck();
         ConnectorPoint = transform.position - (transform.forward * 3f);
         PreviousRotation = transform.eulerAngles.y;
         MoveTails();
-        TruckMv.volume = (_MoveSpeed + 30) / 200;
+        TruckMv.volume = (_MoveSpeed + 25) / 200;
     }
     private void MoveTruck()
     {
+        transform.rotation = Quaternion.Euler(0f, -_CurrentDirection, 0f);
         if (_MoveSpeed < _MaxSpeed)
         {
             _deltaSpeed = _MaxSpeed - _MoveSpeed;
@@ -89,7 +90,6 @@ public class TruckMovement : MonoBehaviour
         {
             _CurrentDirection -= _RotationSpeed * Time.deltaTime * _CollisionFactor;
         }
-        transform.rotation = Quaternion.Euler(0f, -_CurrentDirection, 0f);
     }
     private void MoveTails()
     {
@@ -118,8 +118,8 @@ public class TruckMovement : MonoBehaviour
                 {
                     ThisRotation += _RotationSpeed * Time.deltaTime * (DeltaRotation * 0.04f - 0.2f);
                 }
-                Cargo.transform.rotation = Quaternion.Euler(0f, ThisRotation, 0f);
             }
+            Cargo.transform.rotation = Quaternion.Euler(0f, ThisRotation, 0f);
             PreviousRotation = ThisRotation;
             ConnectorPoint = Cargo.position - (Cargo.forward * 5f);
         }

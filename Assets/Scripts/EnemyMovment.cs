@@ -53,16 +53,22 @@ public class EnemyMovment : MonoBehaviour
             _StateTimer = 0f;
             ChooseStait();
         }
-        MoveEnemy();
         if (Mathf.Abs(_VectorDirection - _CurrentDirection) > 3)
         {
             RotationEnemy();
         }
-        EnemyMv.volume = (_MoveSpeed + 30) / 200;
+        MoveEnemy();
+        EnemyMv.volume = (_MoveSpeed + 15) / 200;
     }
     private void ChooseStait()
     {
-        if (Physics.BoxCast(transform.position + BoxCenter, BoxSize, transform.forward, Quaternion.Euler(transform.forward), 8f))
+        if (transform.position.y < 0)
+        {
+            float makex = transform.position.x;
+            float makez = transform.position.z;
+            transform.position = new Vector3(makex, 0, makez);
+        }
+        if (Physics.BoxCast(transform.position + BoxCenter, BoxSize, transform.forward, Quaternion.Euler(transform.forward), 14f))
         {
             _CurState = 1;
             Jink();
@@ -90,6 +96,7 @@ public class EnemyMovment : MonoBehaviour
     }
     private void MoveEnemy()
     {
+        transform.rotation = Quaternion.Euler(0f, -_CurrentDirection, 0f);
         if (_MoveSpeed < _MaxSpeed)
         {
             _deltaSpeed = _MaxSpeed - _MoveSpeed;
@@ -119,7 +126,6 @@ public class EnemyMovment : MonoBehaviour
         {
             _CurrentDirection -= _RotationSpeed * Time.deltaTime * _CollisionFactor;
         }
-        transform.rotation = Quaternion.Euler(0f, -_CurrentDirection, 0f);
     }
     private void Pursuit()
     {
@@ -170,31 +176,31 @@ public class EnemyMovment : MonoBehaviour
     }
     private void Jink()
     {
-        if (!Physics.BoxCast(transform.position + BoxCenter, ForwardSize, transform.forward, Quaternion.Euler(transform.forward), 8f))
+        if (!Physics.BoxCast(transform.position + BoxCenter, ForwardSize, transform.forward, Quaternion.Euler(transform.forward), 14f))
         {
             _MaxSpeed = _FulSpeed;
             _VectorDirection = _CurrentDirection;
         }
-        else if (!Physics.Raycast(transform.position + transform.right, transform.forward * 9 + transform.right * 4, 10) && 
-            !Physics.Raycast(transform.position + transform.forward, transform.forward * 9 + transform.right * 4, 10))
+        else if (!Physics.Raycast(transform.position + BoxCenter * 0.2f, transform.forward * 12 + transform.right * 7, 14) && 
+            !Physics.Raycast(transform.position + BoxCenter * 0.2f, transform.forward * 12 + transform.right * 4, 13))
         {
             _MaxSpeed = _FulSpeed;
             _VectorDirection = _CurrentDirection - 45;
         }
-        else if (!Physics.Raycast(transform.position - transform.right, transform.forward * 9 + transform.right * -4, 10) &&
-            !Physics.Raycast(transform.position + transform.forward, transform.forward * 9 + transform.right * -4, 10))
+        else if (!Physics.Raycast(transform.position + BoxCenter * 0.2f, transform.forward * 12 + transform.right * -7, 14) &&
+            !Physics.Raycast(transform.position + BoxCenter * 0.2f, transform.forward * 12 + transform.right * -4, 13))
         {
             _MaxSpeed = _FulSpeed;
             _VectorDirection = _CurrentDirection + 45;
         }
-        else if (!Physics.Raycast(transform.position - transform.right, transform.forward * 6 + transform.right * -4, 8) &&
-            !Physics.Raycast(transform.position + transform.forward, transform.forward * 6 + transform.right * -4, 8))
+        else if (!Physics.Raycast(transform.position + BoxCenter * 0.2f, transform.forward * 10 + transform.right * -6, 12) &&
+            !Physics.Raycast(transform.position + BoxCenter * 0.2f, transform.forward * 8 + transform.right * -2, 8))
         {
             _MaxSpeed = 5f;
             _VectorDirection = _CurrentDirection + 90;
         }
-        else if (!Physics.Raycast(transform.position + transform.right, transform.forward * 6 + transform.right * 4, 8) &&
-            !Physics.Raycast(transform.position + transform.forward, transform.forward * 6 + transform.right * 4, 8))
+        else if (!Physics.Raycast(transform.position + BoxCenter * 0.2f, transform.forward * 10 + transform.right * 6, 12) &&
+            !Physics.Raycast(transform.position + BoxCenter * 0.2f, transform.forward * 8 + transform.right * 2, 8))
         {
             _MaxSpeed = 5f;
             _VectorDirection = _CurrentDirection - 90;

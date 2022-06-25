@@ -36,6 +36,8 @@ public class EnemyMovment : MonoBehaviour
     public float maxHP;
     public float curHP;
 
+    public AudioSource EnemyMv;
+
     private void Awake()
     {
         PlayerTruck = GameObject.FindWithTag("Player");
@@ -56,7 +58,7 @@ public class EnemyMovment : MonoBehaviour
         {
             RotationEnemy();
         }
-
+        EnemyMv.volume = (_MoveSpeed + 30) / 200;
     }
     private void ChooseStait()
     {

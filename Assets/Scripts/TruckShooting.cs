@@ -19,6 +19,7 @@ public class TruckShooting : MonoBehaviour
     public GameObject BulletPosition;
     public Transform BulletPrefab;
     public Transform bullets;
+    public AudioSource TruckSh;
 
     private void Awake()
     {
@@ -81,5 +82,6 @@ public class TruckShooting : MonoBehaviour
         Transform bulletTrasform = Instantiate(BulletPrefab, BulletPosition.transform.position, Quaternion.identity, bullets);
         bulletTrasform.GetComponent<Bullet>().Setup(_AimDirection, Aim, false);
         _ReloadTimer = 0f;
+        TruckSh.Play();
     }
 }

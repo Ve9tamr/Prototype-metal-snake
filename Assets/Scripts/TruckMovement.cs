@@ -36,12 +36,14 @@ public class TruckMovement : MonoBehaviour
     public GameObject TailtoDestroy;
     public Text tailsnumber;
     public Image hpBar;
+    public AudioSource TruckMv;
 
     private void Awake()
     {
         wincontroller = canvaspad.GetComponent<MenuUIController>();
         curHP = maxHP;
         _CollisionFactor = 1;
+        _MoveSpeed = 5;
         TailsChange();
     }
     void Update()
@@ -54,6 +56,7 @@ public class TruckMovement : MonoBehaviour
         ConnectorPoint = transform.position - (transform.forward * 3f);
         PreviousRotation = transform.eulerAngles.y;
         MoveTails();
+        TruckMv.volume = (_MoveSpeed + 30) / 200;
     }
     private void MoveTruck()
     {

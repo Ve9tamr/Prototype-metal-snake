@@ -17,12 +17,19 @@ public class EnemySpawn : MonoBehaviour
     public GameObject EnemyPrefab;
     public Transform EnemyFolder;
 
+    private void Awake()
+    {
+        GlobalTimer = 0;
+        LateSpawnCounter = 0;
+        FirstEncounter = false;
+        SpawnerTimer = 0;
+    }
     private void Update()
     {
         if (SpawnerTimer > 0)
         {
             SpawnerTimer -= Time.deltaTime;
-            if (SpawnerTimer < 0)
+            if (SpawnerTimer <= 0)
             {
                 SpawnEnemy();
             }
@@ -42,11 +49,11 @@ public class EnemySpawn : MonoBehaviour
     {
         if (GlobalTimer < 90f)
         {
-            NextWave = GlobalTimer + Random.Range(9f, 18f);
+            NextWave = GlobalTimer + Random.Range(10f, 20f);
         }
         else
         {
-            NextWave = GlobalTimer + Random.Range(5f, 10f);
+            NextWave = GlobalTimer + Random.Range(5f, 8f);
         }
     }
     public void SpawnWave()

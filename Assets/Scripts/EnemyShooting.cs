@@ -20,6 +20,7 @@ public class EnemyShooting : MonoBehaviour
     public Transform BulletPrefab;
     public GameObject forbullets;
     public Transform bullets;
+    public AudioSource EnemySh;
 
     private void Awake()
     {
@@ -75,5 +76,6 @@ public class EnemyShooting : MonoBehaviour
         Transform bulletTrasform = Instantiate(BulletPrefab, BulletPosition.transform.position, Quaternion.identity, bullets);
         bulletTrasform.GetComponent<Bullet>().Setup(_AimDirection, Aim, true);
         _ReloadTimer = 0f;
+        EnemySh.Play();
     }
 }

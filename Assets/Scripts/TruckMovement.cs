@@ -244,4 +244,10 @@ public class TruckMovement : MonoBehaviour
         curHP -= 5f;
         CheckHP();
     }
+    public void TrailerDamaged()
+    {
+        CrushIn.Play();
+        curHP -= _MoveSpeed * (_MoveSpeed * 0.2f + 2f) + 10;
+        CheckHP();
+    }
 }

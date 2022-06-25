@@ -40,6 +40,11 @@ public class EnemyMovment : MonoBehaviour
     public GameObject CanvasCounter;
     private MenuUIController CanvasScript;
 
+    public int EnemyType;
+    private bool RamMode = false;
+    private float RamTimer;
+    private float RamFactor;
+
     private void Awake()
     {
         PlayerTruck = GameObject.FindWithTag("Player");
@@ -48,9 +53,25 @@ public class EnemyMovment : MonoBehaviour
         CanvasScript = CanvasCounter.GetComponent<MenuUIController>();
         _CollisionFactor = 1;
         curHP = maxHP;
+        if (EnemyType == 2)
+        {
+            RamFactor = 0.2f;
+        }
+        else
+        {
+            RamFactor = 1f;
+        }
     }
     private void Update()
     {
+        if (RamMode)
+        {
+            RamTimer -= Time.deltaTime;
+            if (RamTimer <= 0)
+            {
+                RamMode = false;
+            }
+        }
         _StateTimer += Time.deltaTime;
         if (_StateTimer > _StateDelta)
         {
@@ -62,7 +83,7 @@ public class EnemyMovment : MonoBehaviour
             RotationEnemy();
         }
         MoveEnemy();
-        EnemyMv.volume = (_MoveSpeed + 50) / 400;
+        EnemyMv.volume = (_MoveSpeed + 40) / 400;
     }
     private void ChooseStait()
     {
@@ -73,7 +94,7 @@ public class EnemyMovment : MonoBehaviour
             transform.position = new Vector3(makex, 0, makez);
         }
         PlayerDistance = Vector3.Magnitude(transform.position - PlayerTruck.transform.position);
-        if (Physics.BoxCast(transform.position + BoxCenter, BoxSize, transform.forward, Quaternion.Euler(transform.forward), 14f))
+        if (Physics.BoxCast(transform.position + BoxCenter, BoxSize, transform.forward, Quaternion.Euler(transform.forward), 14f) && !RamMode)
         {
             _CurState = 1;
             Jink();
@@ -87,8 +108,16 @@ public class EnemyMovment : MonoBehaviour
             }
             else if (PlayerDistance > EvasionDistance)
             {
-                _CurState = 3;
-                NormalMove();
+                if (EnemyType == 2)
+                {
+                    _CurState = 5;
+                    Ramming();
+                }
+                else
+                {
+                    _CurState = 3;
+                    NormalMove();
+                }
             }
             else
             {
@@ -178,6 +207,21 @@ public class EnemyMovment : MonoBehaviour
             _VectorDirection = 90;
         }
     }
+    private void Ramming()
+    {
+        RamMode = true;
+        RamTimer = 1f;
+        _MaxSpeed = _FulSpeed;
+        _pursuitDirection = (PlayerTruck.transform.position + 10f * PlayerTruck.transform.forward) - transform.position;
+        if (Vector3.Angle(_pursuitDirection, transform.forward) > 3f)
+        {
+            _VectorDirection = -Vector3.SignedAngle(Vector3.forward, _pursuitDirection, Vector3.up);
+        }
+        else
+        {
+            _VectorDirection = _CurrentDirection;
+        }
+    }
     private void Jink()
     {
         if (!Physics.BoxCast(transform.position + BoxCenter, ForwardSize, transform.forward, Quaternion.Euler(transform.forward), 14f))
@@ -224,20 +268,26 @@ public class EnemyMovment : MonoBehaviour
     }
     private void OnCollisionEnter(Collision collisionEnter)
     {
-        if (collisionEnter.gameObject.CompareTag("Obstacle") || collisionEnter.gameObject.CompareTag("Player") || collisionEnter.gameObject.CompareTag("Enemy"))
+        if (collisionEnter.gameObject.CompareTag("Obstacle") || collisionEnter.gameObject.CompareTag("Player") 
+            || collisionEnter.gameObject.CompareTag("Enemy") || collisionEnter.gameObject.CompareTag("Trailer"))
         {
             _DirectionDelta = 0 - transform.eulerAngles.y;
             _CollisionFactor = 2;
+            RamMode = false;
+            if (collisionEnter.gameObject.CompareTag("Trailer"))
+            {
+                TruckScript.TrailerDamaged();
+            }
             if (PlayerDistance < 60)
             {
                 if (collisionEnter.gameObject.CompareTag("Obstacle"))
                 {
-                    curHP -= _MoveSpeed * (_MoveSpeed * 0.5f + 5f) - 35;
+                    curHP -= (_MoveSpeed * (_MoveSpeed * 0.5f + 5f) - 35) * RamFactor;
                     _MoveSpeed = 5f;
                 }
                 else
                 {
-                    curHP -= _MoveSpeed * (_MoveSpeed * 0.3f + 3f) + 10;
+                    curHP -= (_MoveSpeed * (_MoveSpeed * 0.3f + 3f) + 10) * RamFactor;
                 }
                 CheckHP(0);
             }
@@ -245,7 +295,8 @@ public class EnemyMovment : MonoBehaviour
     }
     private void OnCollisionStay(Collision collisionStay)
     {
-        if (collisionStay.gameObject.CompareTag("Obstacle") || collisionStay.gameObject.CompareTag("Player") || collisionStay.gameObject.CompareTag("Enemy"))
+        if (collisionStay.gameObject.CompareTag("Obstacle") || collisionStay.gameObject.CompareTag("Player") 
+            || collisionStay.gameObject.CompareTag("Enemy") || collisionStay.gameObject.CompareTag("Trailer"))
         {
             _CurrentDirection = 0 - transform.eulerAngles.y;
             if (collisionStay.gameObject.CompareTag("Obstacle"))
@@ -265,7 +316,8 @@ public class EnemyMovment : MonoBehaviour
     }
     private void OnCollisionExit(Collision collisionExit)
     {
-        if (collisionExit.gameObject.CompareTag("Obstacle") || collisionExit.gameObject.CompareTag("Enemy") || collisionExit.gameObject.CompareTag("Player"))
+        if (collisionExit.gameObject.CompareTag("Obstacle") || collisionExit.gameObject.CompareTag("Enemy") 
+            || collisionExit.gameObject.CompareTag("Player") || collisionExit.gameObject.CompareTag("Trailer"))
         {
             _CollisionFactor = 1;
         }

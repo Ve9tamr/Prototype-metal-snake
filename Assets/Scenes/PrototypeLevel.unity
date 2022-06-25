@@ -10734,6 +10734,7 @@ MonoBehaviour:
   GlobalTimer: 0
   NextWave: 0
   EnemyPrefab: {fileID: 1082639995268764148, guid: 358cc809a282e6b4c959ac245d123889, type: 3}
+  RamPrefab: {fileID: 7894999428938434261, guid: 186899556a9eace4f9c3351404103f06, type: 3}
   EnemyFolder: {fileID: 1184000856}
 --- !u!1001 &667114575
 PrefabInstance:
@@ -17864,7 +17865,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1042565050
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -37921,6 +37922,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1939042492}
     - target: {fileID: 9034655241354966653, guid: 47e229763ab89524a8e12271843543db, type: 3}
+      propertyPath: CrushIn
+      value: 
+      objectReference: {fileID: 9034655242428319809}
+    - target: {fileID: 9034655241354966653, guid: 47e229763ab89524a8e12271843543db, type: 3}
       propertyPath: _FulSpeed
       value: 25
       objectReference: {fileID: 0}
@@ -37962,3 +37967,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 47e229763ab89524a8e12271843543db, type: 3}
+--- !u!82 &9034655242428319809 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 1956747271248553245, guid: 47e229763ab89524a8e12271843543db, type: 3}
+  m_PrefabInstance: {fileID: 9034655242428319808}
+  m_PrefabAsset: {fileID: 0}

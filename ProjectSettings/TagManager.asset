@@ -9,6 +9,7 @@ TagManager:
   - Enemy
   - PlayerWeapon
   - Canvas
+  - Trailer
   layers:
   - Default
   - TransparentFX

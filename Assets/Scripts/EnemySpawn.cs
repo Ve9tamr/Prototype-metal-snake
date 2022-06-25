@@ -13,8 +13,10 @@ public class EnemySpawn : MonoBehaviour
     private float SpawnerTimer;
     private int SpawnCounter;
     private int LateSpawnCounter;
+    private float RandomEnemy;
 
     public GameObject EnemyPrefab;
+    public GameObject RamPrefab;
     public Transform EnemyFolder;
 
     private void Awake()
@@ -71,15 +73,23 @@ public class EnemySpawn : MonoBehaviour
     }
     public void SpawnEnemy()
     {
+        RandomEnemy = Random.Range(0f, 100f);
         if (SpawnCounter % 2 == 0)
         {
-            CurrentSpawner = CurrentSpawnerA.GetComponent<Transform>(); ;
+            CurrentSpawner = CurrentSpawnerA.GetComponent<Transform>();
         }
         else
         {
-            CurrentSpawner = CurrentSpawnerB.GetComponent<Transform>(); ;
+            CurrentSpawner = CurrentSpawnerB.GetComponent<Transform>();
         }
-        Instantiate(EnemyPrefab, CurrentSpawner.position, Quaternion.identity, EnemyFolder);
+        if (RandomEnemy > 40)
+        {
+            Instantiate(EnemyPrefab, CurrentSpawner.position, Quaternion.identity, EnemyFolder);
+        }
+        else
+        {
+            Instantiate(RamPrefab, CurrentSpawner.position, Quaternion.identity, EnemyFolder);
+        }
         if (--SpawnCounter > 0)
         {
             SpawnerTimer = Random.Range(0.5f, 1f);

@@ -195,6 +195,11 @@ public class TruckMovement : MonoBehaviour
         {
             wincontroller.GameWin();
         }
+        else if (triggerEnter.gameObject.name == "BossSpawner")
+        {
+            BossSpawner BSpawn = triggerEnter.gameObject.GetComponent<BossSpawner>();
+            BSpawn.SpawnBoss();
+        }
     }
     private void TailsChange()
     {

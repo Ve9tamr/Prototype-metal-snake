@@ -51,11 +51,11 @@ public class EnemySpawn : MonoBehaviour
     {
         if (GlobalTimer < 90f)
         {
-            NextWave = GlobalTimer + Random.Range(10f, 20f);
+            NextWave = GlobalTimer + Random.Range(15f, 20f);
         }
         else
         {
-            NextWave = GlobalTimer + Random.Range(5f, 8f);
+            NextWave = GlobalTimer + Random.Range(5f, 10f);
         }
     }
     public void SpawnWave()

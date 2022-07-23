@@ -7,10 +7,11 @@ using UnityEngine.EventSystems;
 public class TouchController : MonoBehaviour
 {
     private Vector2 _PointTouched;
-    private Vector2 _PointSnake;
+    public Vector2 _PointSnake;
     private Vector2 _PointDirection;
     private Vector2 _BasicDirection;
     public GameObject TruckBody;
+    public GameObject PointCentral;
     private TruckMovement rotupdate;
     private bool CorrectTouch;
 
@@ -22,6 +23,7 @@ public class TouchController : MonoBehaviour
         _PointDirection = Vector2.up;
         _BasicDirection = Vector2.up;
         _PointSnake.Set(540.0f, 940.0f);
+        _PointSnake = PointCentral.transform.position;
         rotupdate = TruckBody.GetComponent<TruckMovement>();
         ArrowScript = ArrowSprite.GetComponent<ArrowDissolve>();
     }
